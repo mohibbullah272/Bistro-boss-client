@@ -29,23 +29,23 @@ const Category = () => {
     
         <SwiperSlide >
             <img src={slide1} alt="" />
-            <p className='text-2xl ml-24 text-white/70  -mt-16'>Salad</p>
+            <p className='text-2xl ml-10 md:ml-24 text-white/70 py-5 -mt-20'>Salad</p>
         </SwiperSlide>
         <SwiperSlide>
             <img src={slide2} alt="" />
-            <p className='text-2xl ml-24 text-white/70  -mt-16'>Pizza</p>
+            <p className='text-2xl md:ml-24 ml-10 text-white/70 py-5  -mt-20'>Pizza</p>
         </SwiperSlide>
         <SwiperSlide>
             <img src={slide3} alt="" />
-            <p className='text-2xl ml-24 text-white/70  -mt-16'>Soup</p>
+            <p className='text-2xl md:ml-24 ml-10 text-white/70 py-5 -mt-20'>Soup</p>
         </SwiperSlide>
         <SwiperSlide>
             <img src={slide4} alt="" />
-            <p className='text-2xl ml-24 text-white/70  -mt-16'>Dessert</p>
+            <p className='text-2xl md:ml-24 ml-10 text-white/70 py-5 -mt-20'>Dessert</p>
         </SwiperSlide>
         <SwiperSlide>
             <img src={slide5} alt="" />
-            <p className='text-2xl ml-24 text-white/70  -mt-16'>Salad</p>
+            <p className='text-2xl md:ml-24 ml-10 text-white/70 py-5 -mt-20'>Salad</p>
         </SwiperSlide>
       
        
