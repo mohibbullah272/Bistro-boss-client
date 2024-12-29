@@ -1,18 +1,12 @@
+import { NavLink } from "react-router-dom";
 
 
 const Navbar = () => {
     const links = <>
-     <li><a>Item 1</a></li>
-            <li>
-              <details>
-                <summary>Parent</summary>
-                <ul className="p-2">
-                  <li><a>Submenu 1</a></li>
-                  <li><a>Submenu 2</a></li>
-                </ul>
-              </details>
-            </li>
-            <li><a>Item 3</a></li>
+     <li><NavLink to={'/'}>Home</NavLink></li>
+     <li><NavLink to={'/menu'}>Our Menu</NavLink></li>
+     <li><NavLink to={'/order'}>Order Food</NavLink></li>
+  
     </>
     return (
         <div className="navbar fixed max-w-screen-xl z-10 bg-opacity-30 bg-black text-white">
@@ -38,7 +32,7 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl uppercase">bistro boss <br /> restaurant</a>
+          <a className="btn  btn-ghost text-sm uppercase">bistro boss <br /> restaurant</a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
