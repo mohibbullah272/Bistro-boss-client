@@ -1,18 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Cover from '../../../Shared/Cover/Cover';
 import orderBanner from '../../../assets/shop/banner2.jpg'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import useMenu from '../../../Hooks/useMenu';
+import FoodOrderTab from '../../../components/FoodOrderTab';
+import { useParams } from 'react-router-dom';
 const Order = () => {
+  const [menu]=useMenu()
+  const salad = menu.filter(item=> item.category === 'salad')
+  const dessert = menu.filter(item=> item.category === 'dessert')
+  const pizza = menu.filter(item=> item.category === 'pizza')
+  const drinks = menu.filter(item=> item.category === 'drinks')
+  const soup = menu.filter(item=> item.category === 'soup')
+  const {category} = useParams()
+  const tabCategory = ["salad","Pizza","soup","Dessert","Drinks"]
+  const initialTab = tabCategory.indexOf(category)
+ const [tabIndex,setTabindex]=useState(initialTab)
+console.log('initial index',initialTab,'tabindex',tabIndex)
     return (
         <div>
             <Helmet>
                 <title>Bistro Boss | Food order</title>
             </Helmet>
           <Cover img={orderBanner} title={'our shop'}></Cover>
-          <section className='w-11/12 mx-auto text-center'>
-          <Tabs>
+          <section className='w-11/12 mx-auto text-center my-10 '>
+          <Tabs defaultIndex={tabIndex} onSelect={(index) =>setTabindex(index) }>
     <TabList>
       <Tab>Salad</Tab>
       <Tab>Pizza</Tab>
@@ -22,19 +36,19 @@ const Order = () => {
     </TabList>
 
     <TabPanel>
-      <h2>salad</h2>
+    <FoodOrderTab items={salad}></FoodOrderTab>
     </TabPanel>
     <TabPanel>
-      <h2>pizza</h2>
+  <FoodOrderTab items={pizza}></FoodOrderTab>
     </TabPanel>
     <TabPanel>
-      <h2>soup</h2>
+    <FoodOrderTab items={soup}></FoodOrderTab>
     </TabPanel>
     <TabPanel>
-      <h2>dessert</h2>
+    <FoodOrderTab items={dessert}></FoodOrderTab>
     </TabPanel>
     <TabPanel>
-      <h2>drinks</h2>
+    <FoodOrderTab items={drinks}></FoodOrderTab>
     </TabPanel>
   </Tabs>
           </section>

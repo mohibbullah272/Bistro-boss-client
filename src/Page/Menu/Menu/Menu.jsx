@@ -16,7 +16,6 @@ const Menu = () => {
    const pizza = menu.filter(item=> item.category === 'pizza')
    const offered = menu.filter(item=> item.category === 'offered')
    const soup = menu.filter(item=> item.category === 'soup')
-   console.log(offered)
     return (
         <div>
             <Helmet>
@@ -31,22 +30,22 @@ const Menu = () => {
            <section>
             {/* dessert */}
          <Cover img={dessertImg} adjustHeight={'h-[400px]'} title={'Dessert'}></Cover>
-         <MenuCategory items={dessert}></MenuCategory>
+         <MenuCategory category={'Dessert'} items={dessert}></MenuCategory>
            </section>
            <section >
             {/* pizza */}
          <Cover img={pizzaImg} adjustHeight={'h-[400px]'} title={'Pizza'}></Cover>
-         <MenuCategory items={pizza}></MenuCategory>
+         <MenuCategory category={'Pizza'} items={pizza}></MenuCategory>
            </section>
            <section >
             {/* salad */}
          <Cover img={saladImg} adjustHeight={'h-[400px]'} title={'salad'}></Cover>
-         <MenuCategory items={salad}></MenuCategory>
+         <MenuCategory  category={'salad'} items={salad}></MenuCategory>
            </section>
            <section >
             {/* soup*/}
          <Cover img={soupImg} adjustHeight={'h-[400px]'} title={'Soup'}></Cover>
-         <MenuCategory items={soup}></MenuCategory>
+         <MenuCategory category={'soup'} items={soup}></MenuCategory>
            </section>
         </div>
     );
