@@ -25,7 +25,10 @@ const User = () => {
             confirmButtonText: "make Admin!"
           }).then(async(result) => {
             if (result.isConfirmed) {
-             await axiosSecure.patch(`/user/admin/${id}`)
+         const {data}=    await axiosSecure.patch(`/user/admin/${id}`)
+             console.log(data)
+             toast.success('Your activity saved')
+             refetch()
             }
           });
     }
@@ -78,9 +81,11 @@ const handleRemove=(id)=>{
         <td>
           <span>{item?.email} </span>
         </td>
-        <td><button onClick={()=>handleUpdateRole(item?._id)} className="bg-[#D1A054] btn">
+        <td>{
+            item.role==='admin'?<p>admin</p>:<button onClick={()=>handleUpdateRole(item?._id)} className="bg-[#D1A054] btn">
             <FaUsers className="text-white"></FaUsers>
-            </button></td>
+            </button>
+            }</td>
         <th>
           <button onClick={()=>handleRemove(item?._id)} className="btn btn-ghost btn-xs"><FaTrashAlt className="text-xl text-red-600"></FaTrashAlt></button>
         </th>

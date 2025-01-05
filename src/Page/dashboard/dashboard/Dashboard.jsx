@@ -1,9 +1,17 @@
 import { FaBahai, FaBookReader, FaCalendarAlt, FaCartPlus, FaHome, FaListAlt, FaMailBulk, FaSearch, FaShoppingBag, FaUsers } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { ImSpoonKnife } from "react-icons/im";
+import { useContext } from "react";
+import { AuthContext } from "../../../provider/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useAdmin from "../../../Hooks/useAdmin";
 
 const Dashboard = () => {
-    const admin = true
+const [isAdmin,isLoading]=useAdmin()
+if(isLoading){
+  return <p>please wait</p>
+}
     return (
         <div className="flex ">
             <div className="w-60 min-h-screen bg-[#D1A054] ">
@@ -14,7 +22,7 @@ const Dashboard = () => {
               </Link>
 <ul className="p-5">
 {
-    admin?<>
+    isAdmin?<>
         <li>
     <NavLink className={({ isActive }) =>isActive ? "" : "text-white font-semibold" 
   }><span className="flex gap-3 items-center "><FaHome></FaHome> Admin Home</span></NavLink>

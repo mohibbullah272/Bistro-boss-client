@@ -33,16 +33,21 @@ const updateUserProfile=(name,photo)=>{
 useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
         if (currentUser?.email) {
+            setUser(currentUser);
+            setLoading(false);
             const userInfo={
                 email:currentUser?.email
             }
-            axiosPublic.get(`/jwt`,)
+            
+            axiosPublic.get(`/jwt`,{userInfo})
             .then(res=> {
+                
                 if(res.data.token){
+                   
                     localStorage.setItem('access-token',res.data.token)  }})
             
-            setUser(currentUser);
-            setLoading(false);
+          
+           
 
             setTimeout(async() => {
               const {data} = await axiosPublic.post('/users',{
