@@ -1,22 +1,34 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
+import { FaCartArrowDown } from "react-icons/fa";
+import useCart from "../../Hooks/useCart";
 
 
 const Navbar = () => {
   const {user,logOut,setUser}=useContext(AuthContext)
+  const [cart,refetch]=useCart()
  const  handleLogout=()=>{
     logOut()
     .then(()=>{
       console.log('user logged out successfully')
+      refetch()
       
     })
   }
+  console.log(user)
     const links = <>
      <li><NavLink to={'/'}>Home</NavLink></li>
      <li><NavLink to={'/menu'}>Our Menu</NavLink></li>
      <li><NavLink to={`/order/salad`}>Order Food</NavLink></li>
-  
+    <li>
+      <NavLink to={'/dashboard/cart'}>
+      <button className="btn btn-sm">
+  <FaCartArrowDown></FaCartArrowDown>
+  <div className="badge badge-secondary">+{cart?.length}</div>
+</button>
+      </NavLink>
+    </li>
     </>
     return (
         <div className="navbar fixed max-w-screen-xl z-10 bg-opacity-30 bg-black text-white">
@@ -52,7 +64,7 @@ const Navbar = () => {
         <div className="navbar-end">
        {
         user? <div className="flex items-center gap-3">
-          <p>{user?.displayName}</p>
+        <img data-reference='no-reference' className="w-14 h-14 rounded-full" src={user?.photoURL} alt="" />
         <button onClick={handleLogout} className="btn btn-ghost">Logout</button>
         </div>:
         <div className="flex items-center gap-3">

@@ -5,8 +5,9 @@ import { uploadImage } from '../../Hooks/uploadImg';
 import { AuthContext } from '../../provider/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { FaGoogle } from 'react-icons/fa';
 const SignUp = () => {
-    const {createUser,updateUserProfile}=useContext(AuthContext)
+    const {createUser,updateUserProfile,googleLogin,}=useContext(AuthContext)
     const {
         register,
         handleSubmit,
@@ -35,6 +36,13 @@ const SignUp = () => {
         toast.success('successfully signUp complete')
         navigate('/')
     }
+      }
+      const handleGoogleLogin=()=>{
+        googleLogin()
+        .then(()=>{
+          toast.success('signup successfully complete')
+          navigate('/')
+        })
       }
     return (
         <div style={{backgroundImage:`url(${bg})`,
@@ -94,7 +102,10 @@ const SignUp = () => {
                                 )}
                             </button>
                         </div>
-     
+                        <div className="divider">or</div>
+     <div>
+      <div onClick={handleGoogleLogin} className='btn w-full btn-outline'><FaGoogle></FaGoogle> Google signUp</div>
+     </div>
             </form>
           </div>
         </div>

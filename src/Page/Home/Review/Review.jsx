@@ -24,7 +24,7 @@ const Review = () => {
           <div className='p-10'>
           <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
       {
-        feedback.map(review=>   <SwiperSlide>
+        feedback.map(review=>   <SwiperSlide key={review._id}>
               <div className='p-5 space-y-5'>
               <Rating
                className='mx-auto '

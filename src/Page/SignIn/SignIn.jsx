@@ -3,10 +3,21 @@ import bg from '../../assets/others/authentication.png'
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../provider/AuthProvider';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import bg2 from '../../assets/others/authentication2.png'
+import { FaGoogle } from "react-icons/fa";
+
 const SignIn = () => {
-    const {login}=useContext(AuthContext)
-    const navigate = useNavigate()
+const {login,googleLogin,}=useContext(AuthContext)
+const navigate = useNavigate()
+const handleGoogleLogin=()=>{
+  googleLogin()
+  .then(()=>{
+    toast.success('login successful')
+    navigate('/')
+  })
+}
+
     const handleSubmit =e=>{
         e.preventDefault()
         const form = e.target 
@@ -32,14 +43,15 @@ else{
 }
     }
     return (
-        <div className='min-h-screen flex justify-center flex-col items-center' style={{backgroundImage:`url(${bg})`,
+        <div className='min-h-screen flex md:flex-row flex-col md:justify-evenly gap-5 items-center' style={{backgroundImage:`url(${bg})`,
         backgroundSize:'cover'
         }}>
             <div className='mb-5'>
-                <h3 className='text-3xl text-gray-800'>Welcome back !!</h3>
-                <p>Login now to explore more amazing things</p>
+                <img src={bg2} alt="" />
             </div>
-            <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+ <div className='w-1/3'>
+  <p className='text-3xl font-bold text-center mb-5'>Login</p>
+ <div className="card  w-full  ">
       <form onSubmit={handleSubmit} className="card-body">
         <div className="form-control">
           <label className="label">
@@ -61,10 +73,16 @@ else{
         <input type="text" placeholder='type the above captcha' onBlur={handleValidCaptcha} className='input'/>
         </div>
         <div className="form-control mt-6">
-          <button disabled={disabled} className="btn btn-primary">Login</button>
+          <button disabled={disabled} className="btn border-none bg-[#D1A054] text-white/70">Login</button>
         </div>
       </form>
+      <p className='text-[#D1A054] text-center'>New here ? <Link to={'/signUp'}>Create new Account</Link></p>
+      <p className="text-center">or sign in with</p>
+      <div className='text-center my-5'>
+        <button onClick={handleGoogleLogin}><FaGoogle className='text-xl' /></button>
+      </div>
     </div>
+ </div>
         </div>
     );
 };
