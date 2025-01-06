@@ -1,16 +1,13 @@
 import { FaBahai, FaBookReader, FaCalendarAlt, FaCartPlus, FaHome, FaListAlt, FaMailBulk, FaSearch, FaShoppingBag, FaUsers } from "react-icons/fa";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { ImSpoonKnife } from "react-icons/im";
-import { useContext } from "react";
-import { AuthContext } from "../../../provider/AuthProvider";
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAdmin from "../../../Hooks/useAdmin";
+import Loading from "../../Loading/Loading";
 
 const Dashboard = () => {
 const [isAdmin,isLoading]=useAdmin()
 if(isLoading){
-  return <p>please wait</p>
+  return <Loading></Loading>
 }
     return (
         <div className="flex ">
@@ -28,11 +25,11 @@ if(isLoading){
   }><span className="flex gap-3 items-center "><FaHome></FaHome> Admin Home</span></NavLink>
 </li>
         <li>
-    <NavLink className={({ isActive }) =>isActive ? "" : "text-white font-semibold" 
+    <NavLink to={'/dashboard/addItem'} className={({ isActive }) =>isActive ? "text-white font-semibold" : "" 
   }><span className="flex gap-3 items-center "><ImSpoonKnife /> Add Food</span></NavLink>
 </li>
         <li>
-    <NavLink className={({ isActive }) =>isActive ? "" : "text-white font-semibold" 
+    <NavLink to={'/dashboard/manageItem'} className={({ isActive }) =>isActive ? "text-white font-semibold" : "" 
   }><span className="flex gap-3 items-center "><FaListAlt></FaListAlt>Manage Item</span></NavLink>
 </li>
         <li>

@@ -10,6 +10,8 @@ import MyCart from "../Page/dashboard/dashboard/cart/MyCart";
 import User from "../Page/dashboard/dashboard/User";
 import PrivetRoute from "./PrivetRoute";
 import AdminRoute from "./AdminRoute";
+import AddItem from "../Page/dashboard/dashboard/additem/AddItem";
+import MangeItem from "../Page/dashboard/dashboard/ManageItem/MangeItem";
 
 
 export const router = createBrowserRouter([
@@ -55,6 +57,14 @@ export const router = createBrowserRouter([
                 element:<AdminRoute>
                     <User></User>
                 </AdminRoute>
+            },
+            {
+                path:'addItem',
+                element:<AddItem></AddItem>
+            },
+            {
+                path:'manageItem',
+                element:<MangeItem></MangeItem>
             }
         ]
     }  
