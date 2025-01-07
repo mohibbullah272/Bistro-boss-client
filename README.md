@@ -38,7 +38,7 @@ Bistro Boss is a web application designed to provide users with an easy way to f
 ### Steps:
 1. **Clone the Repository**  
    ```bash
-   git clone https://github.com/your-username/bistro-boss.git
+   git clone https://github.com/mohibbullah272/bistro-boss.git
    ```
    2. **Install Dependencies**  
    Navigate to the project folder and run:
