@@ -7,18 +7,23 @@ import 'react-tabs/style/react-tabs.css';
 import useMenu from '../../../Hooks/useMenu';
 import FoodOrderTab from '../../../components/FoodOrderTab';
 import { useParams } from 'react-router-dom';
+import Loading from '../../Loading/Loading';
 const Order = () => {
-  const [menu]=useMenu()
-  const salad = menu.filter(item=> item.category === 'salad')
-  const dessert = menu.filter(item=> item.category === 'dessert')
-  const pizza = menu.filter(item=> item.category === 'pizza')
-  const drinks = menu.filter(item=> item.category === 'drinks')
-  const soup = menu.filter(item=> item.category === 'soup')
+  const [menu,isLoading]=useMenu()
+  
+ 
+  const salad = menu?.filter(item=> item.category === 'salad')
+  const dessert = menu?.filter(item=> item.category === 'dessert')
+  const pizza = menu?.filter(item=> item.category === 'pizza')
+  const drinks = menu?.filter(item=> item.category === 'drinks')
+  const soup = menu?.filter(item=> item.category === 'soup')
   const {category} = useParams()
   const tabCategory = ["salad","Pizza","soup","Dessert","Drinks"]
   const initialTab = tabCategory.indexOf(category)
  const [tabIndex,setTabindex]=useState(initialTab)
-console.log('initial index',initialTab,'tabindex',tabIndex)
+ if(isLoading){
+  return <Loading></Loading>
+}
     return (
         <div>
             <Helmet>

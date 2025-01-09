@@ -4,6 +4,7 @@ import useCart from "../../../../Hooks/useCart";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 
 const MyCart = () => {
@@ -39,7 +40,11 @@ const MyCart = () => {
             <div className="flex mb-5 justify-evenly items-center">
                 <p className="text-2xl font-semibold">Total Order : {cart?.length} </p>
                 <p className="text-2xl font-semibold">total price $ {totalPrice} </p>
+              {
+                cart?.length?  <Link to={'/dashboard/payment'}>
                 <button className="btn border-none bg-[#D1A054]">Pay</button>
+                </Link>:<button disabled className="btn border-none bg-[#D1A054]">Pay</button>
+              }
             </div>
             <div className="overflow-x-auto">
   <table className="table">

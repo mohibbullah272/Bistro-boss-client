@@ -9,8 +9,12 @@ import soupImg from '../../../assets/menu/soup-bg.jpg'
 import useMenu from '../../../Hooks/useMenu';
 import SharedTitles from '../../../components/SharedTitles';
 import MenuCategory from '../../../components/MenuCategory';
+import Loading from '../../Loading/Loading';
 const Menu = () => {
-    const [menu]=useMenu()
+    const [menu,isLoading]=useMenu()
+    if(isLoading){
+      return <Loading></Loading>
+    }
    const salad = menu.filter(item=> item.category === 'salad')
    const dessert = menu.filter(item=> item.category === 'dessert')
    const pizza = menu.filter(item=> item.category === 'pizza')

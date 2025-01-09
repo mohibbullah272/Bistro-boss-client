@@ -48,8 +48,8 @@ if(isLoading){
   }><span className="flex gap-3 items-center "><FaHome></FaHome> User Home</span></NavLink>
 </li>
 <li>
-    <NavLink to={'/dashboard'} className={({ isActive }) =>isActive ? " " : "text-white font-semibold" 
-  }><span className="flex gap-3 items-center "> <FaCalendarAlt></FaCalendarAlt> Reservation</span></NavLink>
+    <NavLink to={'/dashboard/history'} className={({ isActive }) =>isActive ? "text-white font-semibold " : "" 
+  }><span className="flex gap-3 items-center "> <FaCalendarAlt></FaCalendarAlt> Payments</span></NavLink>
 </li>
 <li>
     <NavLink  className={({ isActive }) =>isActive ? "text-white font-semibold" : "" 
