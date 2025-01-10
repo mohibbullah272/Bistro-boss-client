@@ -54,7 +54,7 @@ useEffect(() => {
                     name:currentUser?.displayName,
                     email:currentUser?.email,
                 })
-                console.log(data)
+              
             }, 1000);
         } else {
             setUser(null)

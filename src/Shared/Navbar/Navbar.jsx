@@ -3,11 +3,13 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import { FaCartArrowDown } from "react-icons/fa";
 import useCart from "../../Hooks/useCart";
+import useAdmin from "../../Hooks/useAdmin";
 
 
 const Navbar = () => {
   const {user,logOut,setUser}=useContext(AuthContext)
   const [cart,refetch]=useCart()
+  const [isAdmin,isLoading]=useAdmin()
  const  handleLogout=()=>{
     logOut()
     .then(()=>{
@@ -16,7 +18,6 @@ const Navbar = () => {
       
     })
   }
-  console.log(user)
     const links = <>
      <li><NavLink to={'/'}>Home</NavLink></li>
      <li><NavLink to={'/menu'}>Our Menu</NavLink></li>
@@ -29,6 +30,7 @@ const Navbar = () => {
 </button>
       </NavLink>
     </li>
+    
     </>
     return (
         <div className="navbar fixed max-w-screen-xl z-10 bg-opacity-30 bg-black text-white">
@@ -50,7 +52,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+              className="menu menu-sm dropdown-content bg-black/50 rounded-box z-[1] mt-3 w-52 p-2 shadow">
               {links}
             </ul>
           </div>
@@ -63,10 +65,26 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
        {
-        user? <div className="flex items-center gap-3">
-        <img data-reference='no-reference' className="w-14 h-14 rounded-full" src={user?.photoURL} alt="" />
-        <button onClick={handleLogout} className="btn btn-ghost">Logout</button>
-        </div>:
+        user?  <div className="dropdown dropdown-end">
+        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+          <div className="w-10 rounded-full">
+            <img
+              alt="user photo"
+              src={user?.photoURL} />
+          </div>
+        </div>
+        <ul
+          tabIndex={0}
+          className="menu menu-sm dropdown-content bg-black/80 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+       {
+        user && isAdmin && <li><Link to={'/dashboard/adminHome'}>Dashboard</Link></li>
+       }
+       {
+        user && !isAdmin && <li><Link to={'/dashboard/userHome'}>Dashboard</Link></li>
+       }
+          <li><a onClick={handleLogout}>Logout</a></li>
+        </ul>
+      </div>:
         <div className="flex items-center gap-3">
        <Link to={'/signIn'}>
        <button className="btn border-none bg-stone-500 text-slate-100">login</button>

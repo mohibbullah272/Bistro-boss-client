@@ -10,7 +10,7 @@ if(isLoading){
   return <Loading></Loading>
 }
     return (
-        <div className="flex ">
+        <div className="flex max-w-7xl mx-auto">
             <div className="w-60 min-h-screen bg-[#D1A054] ">
               <Link to={'/'}>
               <div className="hover:bg-slate-100/10 ">
@@ -21,7 +21,7 @@ if(isLoading){
 {
     isAdmin?<>
         <li>
-    <NavLink className={({ isActive }) =>isActive ? "" : "text-white font-semibold" 
+    <NavLink to={'/dashboard/adminHome'} className={({ isActive }) =>isActive ? "text-white font-semibold" : "" 
   }><span className="flex gap-3 items-center "><FaHome></FaHome> Admin Home</span></NavLink>
 </li>
         <li>
@@ -44,7 +44,7 @@ if(isLoading){
     
     </>:<>
     <li>
-    <NavLink className={({ isActive }) =>isActive ? "" : "text-white font-semibold" 
+    <NavLink to={'/dashboard/userHome'} className={({ isActive }) =>isActive ? "text-white font-semibold" : "" 
   }><span className="flex gap-3 items-center "><FaHome></FaHome> User Home</span></NavLink>
 </li>
 <li>

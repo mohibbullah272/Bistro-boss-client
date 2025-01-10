@@ -4,10 +4,12 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useCart from "../../../../Hooks/useCart";
 import { AuthContext } from "../../../../provider/AuthProvider";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 
 const CheckoutForm = () => {
     const strip = useStripe()
+    const navigate = useNavigate()
     const axiosSecure = useAxiosSecure()
     const {user}=useContext(AuthContext)
     const [cart]=useCart()
@@ -70,8 +72,9 @@ const CheckoutForm = () => {
         
 
           const res = await axiosSecure.post('/payments',payment)
-          console.log(res.data)
+        
           toast(`payment success your transiction id ${paymentIntent.id}`)
+          navigate('/dashboard/history')
          }
         }
 

@@ -3,7 +3,7 @@ import OrderCard from '../Page/OrderFood/Order/OrderCard/OrderCard';
 
 const FoodOrderTab = ({items}) => {
     const itemsPerPage = 6
-    const totalPages = Math.ceil(items.length / itemsPerPage)
+    const totalPages = Math.ceil(items?.length / itemsPerPage)
     const [currentPage, setCurrentPage] = useState(1);
     const startIndex = (currentPage - 1) * itemsPerPage;
     const currentItems = items.slice(startIndex, startIndex + itemsPerPage);
